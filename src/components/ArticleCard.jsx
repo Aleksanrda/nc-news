@@ -1,11 +1,12 @@
 import { Card, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ArticleCard = ({ article }) => {
     return (
         <section key={article.article_id}>
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title>{article.title}</Card.Title>
+                    <Card.Title><Link to={`/articles/${article.article_id}`}>{article.title}</Link></Card.Title> 
                     <Card.Text>{article.body}</Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">

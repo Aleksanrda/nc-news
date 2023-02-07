@@ -20,10 +20,26 @@ export const getArticle = (id) => {
         });
 }
 
+export const getCommentsByArticleId = (article_id) => {
+    return newsAPI
+        .get(`/articles/${article_id}/comments`)
+        .then(({ data }) => {
+            return data.comments;
+        })
+};
+
 export const patchVotes = (articleId, body) => {
     return newsAPI
         .patch(`/articles/${articleId}`, body)
         .then(({ data }) => {
             return data.article;
+        });
+}
+
+export const postComment = (articleId, comment) => {
+    return newsAPI
+        .post(`/articles/${articleId}/comments`, comment)
+        .then(({ data }) => {
+            return data.comment;
         });
 }

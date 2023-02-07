@@ -80,3 +80,32 @@
   text-decoration: none;
 }
 
+.comments {
+  width: 35rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.comments h2 {
+  margin: 2rem;
+  color: #4d4d4d;
+  text-align: center;
+}
+
+.comments h5 {
+  color: #666666;
+  padding-top: 0.5rem;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+.comments p {
+  color: #333333;
+  text-align: left;
+}
+
+.comments time {
+  color: #808080;
+  padding: 2rem;
+  text-align: left;
+}

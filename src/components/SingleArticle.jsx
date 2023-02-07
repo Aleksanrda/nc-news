@@ -1,24 +1,40 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getArticle, patchVotes } from '../utils/api';
+import { getArticle } from '../utils/api';
+import Comments from './Comments';
+import { getCommentsByArticleId } from '../utils/api';
+import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { patchVotes } from '../utils/api';
 
 const SingleArticle = () => {
     const { article_id } = useParams();
     const [singleArticle, setSingleArticle] = useState({});
+    const [comments, setComments] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [votes, setVotes] = useState(0);
-
+    
     useEffect(() => {
-        getArticle(article_id)
-            .then((article) => {
-                setSingleArticle(article);
-                setVotes(article.votes);
+        Promise.all([getArticle(article_id), getCommentsByArticleId(article_id)])
+            .then(([articleFromApi, commentsFromApi]) => {
+                setSingleArticle(articleFromApi);
+                setComments(commentsFromApi);
+                setVotes(articleFromApi.votes);
+                setIsLoading(false);
             })
             .catch((err) => {
                 console.log(err);
             })
     }, [article_id]);
 
+    if (isLoading) {
+        return (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          );
+    }
+    
     const updateVotes = (vote) => {
         setVotes(currentVotes => currentVotes + vote);
 
@@ -31,6 +47,7 @@ const SingleArticle = () => {
     };
 
     return (
+        <div>
             <article key={singleArticle?.article_id} className="single-article">
                 <div className="article-body">
                     <h2>{singleArticle?.title}</h2>
@@ -47,6 +64,8 @@ const SingleArticle = () => {
                     <Button variant="secondary" onClick={() => updateVotes(1)} className="like">Like</Button>
                 </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
             </article>
+            <Comments comments={comments} />
+        </div>
     );
 };
 

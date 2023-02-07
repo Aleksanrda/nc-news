@@ -9,5 +9,13 @@ export const getArticles = () => {
         .get('/articles')
         .then(({ data }) => {
             return data.articles;
-        })
+        });
+}
+
+export const getArticle = (id) => {
+    return newsAPI
+        .get(`/articles/${id}`)
+        .then(( { data }) => {
+            return data.article;
+        });
 }

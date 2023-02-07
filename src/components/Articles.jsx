@@ -20,7 +20,7 @@ const Articles = () => {
         <Container className="grid-container">
             {articles.map(article => {
                 return (
-                    <ArticleCard article={article}/>
+                    <ArticleCard article={article} key={article.article_id}/>
                 );
             })}
         </Container>

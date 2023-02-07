@@ -1,36 +1,26 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getArticle, patchVotes } from '../utils/api';
-import { Button } from 'react-bootstrap';
+import { getArticle } from '../utils/api';
 import Comments from './Comments';
 import { getCommentsByArticleId } from '../utils/api';
 import { Spinner } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { patchVotes } from '../utils/api';
 import AddComment from './AddComment';
+
 
 const SingleArticle = () => {
     const { article_id } = useParams();
     const [singleArticle, setSingleArticle] = useState({});
-    const [votes, setVotes] = useState(0);
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-
-    // useEffect(() => {
-    //     Promise.all([getArticle(article_id), getCommentsByArticleId(article_id)])
-    //         .then(([articleFromApi, commentsFromApi]) => {
-    //             setSingleArticle(articleFromApi);
-    //             setComments(commentsFromApi);
-    //             setIsLoading(false);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    // }, [article_id]);
+    const [votes, setVotes] = useState(0);
 
     useEffect(() => {
         getArticle(article_id)
             .then((articleFromApi) => {
                 setSingleArticle(articleFromApi);
-            })
+                setVotes(articleFromApi.votes);
             .catch((err) => {
                 console.log(err);
             })
@@ -47,6 +37,14 @@ const SingleArticle = () => {
             })
     }, [article_id, comments, isLoading]);
 
+    if (isLoading) {
+        return (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          );
+    }
+    
     const updateVotes = (vote) => {
         setVotes(currentVotes => currentVotes + vote);
 

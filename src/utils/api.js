@@ -9,12 +9,12 @@ export const getArticles = () => {
         .get('/articles')
         .then(({ data }) => {
             return data.articles;
-        });
+        })
 }
 
-export const getArticle = (id) => {
+export const getArticle = (article_id) => {
     return newsAPI
-        .get(`/articles/${id}`)
+        .get(`/articles/${article_id}`)
         .then(( { data }) => {
             return data.article;
         });

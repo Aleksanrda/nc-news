@@ -37,6 +37,7 @@
 
 .single-article time {
   color: #808080;
+  margin-bottom: 2rem;
 }
 
 .single-article p {
@@ -51,9 +52,17 @@
   border-radius: 0.5rem;
 }
 
-.single-article h6 {
+.article-body {
+  margin-bottom: 2rem;
+}
+
+.vote-buttons {
+  margin-bottom: 2rem;
+}
+
+.votes {
   color: #4d4d4d;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .navigation-link {

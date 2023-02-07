@@ -1,16 +1,4 @@
-import { useEffect, useState } from 'react';
-import { getCommentsByArticleId } from '../utils/api';
-
-const Comments = ({ article_id }) => {
-    const [comments, setComments] = useState([]);
-
-    useEffect(() => {
-        getCommentsByArticleId(article_id)
-            .then((comments) => {
-                setComments(comments);
-            })
-    }, [article_id]);
-
+const Comments = ({ comments }) => {
     console.log(comments);
 
     return (
@@ -19,10 +7,10 @@ const Comments = ({ article_id }) => {
             {comments?.map(comment => {
                 return (
                     <div key={comment.comment_id}>
+                        <h5>{comment.author}</h5>
                         <p>{comment.body}</p>
-                        <h3>{comment.author}</h3>
-                        <h4>{comment.votes}</h4>
-                        <h5>{comment.created_at}</h5>
+                        <time>{comment.created_at}</time>
+                        <h6>Votes: {comment.votes}</h6> 
                     </div>
                 );
             })}

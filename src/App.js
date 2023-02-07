@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Articles from './components/Articles';
 import Header from './components/Header';
 import NavigationBar from './components/NavigationBar'
+import SingleArticle from './components/SingleArticle';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Articles />}></Route>
+        <Route path="/articles/:article_id" element={<SingleArticle />} />
       </Routes>
     </div>
   );

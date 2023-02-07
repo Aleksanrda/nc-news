@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #FFFFF0;
+  padding-bottom: 2rem;
 }
 
 .Header h1 {
@@ -18,7 +19,8 @@
 .single-article {
   width: 65rem;
   margin: auto;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   border-style: groove;
   border-radius: 1rem;
 }
@@ -35,7 +37,7 @@
 
 .single-article time {
   color: #808080;
-} 
+}
 
 .single-article p {
   color: #333333;
@@ -105,4 +107,3 @@
   padding: 2rem;
   text-align: left;
 }
-

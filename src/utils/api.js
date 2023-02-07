@@ -18,4 +18,5 @@ export const getArticle = (id) => {
         .then(( { data }) => {
             return data.article;
         });
+     })
 }

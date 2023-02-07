@@ -21,6 +21,7 @@ const SingleArticle = () => {
     }, [article_id]);
 
     return (
+        <div>
             <article key={singleArticle?.article_id} className="single-article">
                 <h2>{singleArticle?.title}</h2>
                 <img src={singleArticle?.article_img_url} alt=""></img>
@@ -30,6 +31,7 @@ const SingleArticle = () => {
                 <h6>Votes: {singleArticle?.votes}</h6>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
             </article>
             <Comments comments={comments} />
+        </div>
     );
 };
 

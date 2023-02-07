@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #FFFFF0;
+  padding-bottom: 2rem;
 }
 
 .Header h1 {
@@ -14,3 +15,59 @@
   gap: 2rem;
   padding: 1rem;
 }
+
+.single-article {
+  width: 65rem;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-style: groove;
+  border-radius: 1rem;
+}
+
+.single-article h2 {
+  margin: 2rem;
+  color: #4d4d4d;
+}
+
+.single-article h5 {
+  color: #666666;
+  padding-top: 0.5rem;
+}
+
+.single-article time {
+  color: #808080;
+}
+
+.single-article p {
+  color: #333333;
+  text-align: justify;
+  text-indent: 2.5rem;
+  padding: 2rem;
+  letter-spacing: 0.2rem;
+}
+
+.single-article img {
+  border-radius: 0.5rem;
+}
+
+.single-article h6 {
+  color: #4d4d4d;
+  padding: 2rem;
+}
+
+.navigation-link {
+  color: #FFFFF0;
+  text-decoration: none;
+}
+
+.navigation-link:hover {
+  color: #BC8F8F;
+  text-decoration: none;
+} 
+
+.navigation-link:active {
+  color: #BC8F8F;
+  text-decoration: none;
+}
+

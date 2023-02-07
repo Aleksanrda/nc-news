@@ -17,15 +17,15 @@ const SingleArticle = () => {
     }, [article_id]);
 
     return (
-        <div key={singleArticle?.article_id}>
-            <h2>{singleArticle?.title}</h2>
-            <h3>{singleArticle?.topic}</h3>
-            <h3>{singleArticle?.author}</h3>
-            <h4>{singleArticle?.body}</h4>
-            <h5>{singleArticle?.created_at}</h5>
-            <h6>{singleArticle?.votes}</h6>
-            <h6>{singleArticle?.comment_count}</h6>
-            <img src={singleArticle?.article_img_url} alt=""></img>
+        <div>
+            <article key={singleArticle?.article_id} className="single-article">
+                <h2>{singleArticle?.title}</h2>
+                <img src={singleArticle?.article_img_url} alt=""></img>
+                <h5>written by {singleArticle?.author} | {singleArticle?.topic}</h5>
+                <p>{singleArticle?.body}</p>
+                <time>{singleArticle?.created_at}</time>
+                <h6>Votes: {singleArticle?.votes}</h6>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+            </article>
         </div>
     );
 };

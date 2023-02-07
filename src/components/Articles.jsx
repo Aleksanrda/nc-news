@@ -24,21 +24,6 @@ const Articles = () => {
                 );
             })}
         </Container>
-        <div>
-            {articles.map(article => {
-                return (
-                    <section key={article.article_id}>
-                        <h2>{article.title}</h2>
-                        <h3>{article.topic}</h3>
-                        <h3>{article.author}</h3>
-                        <p>{article.body}</p>
-                        <h6>{article.created_at}</h6>
-                        <h3>Votes: {article.votes}</h3>
-                        <img src={article.article_img_url} alt=""></img>
-                    </section>
-                );
-            })}
-        </div>
     )
 };
 

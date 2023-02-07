@@ -5,6 +5,7 @@ import Comments from './Comments';
 import { getCommentsByArticleId } from '../utils/api';
 import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { patchVotes } from '../utils/api';
 
 const SingleArticle = () => {
     const { article_id } = useParams();
@@ -18,7 +19,7 @@ const SingleArticle = () => {
             .then(([articleFromApi, commentsFromApi]) => {
                 setSingleArticle(articleFromApi);
                 setComments(commentsFromApi);
-                setVotes(article.votes);
+                setVotes(articleFromApi.votes);
                 setIsLoading(false);
             })
             .catch((err) => {

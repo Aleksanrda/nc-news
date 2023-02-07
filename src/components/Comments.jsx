@@ -1,19 +1,20 @@
-const Comments = ({ comments }) => {
-    console.log(comments);
+import { Card } from 'react-bootstrap';
 
+const Comments = ({ comments }) => {
     return (
-        <div className='comments'>
-            <h2>Comments</h2>
+        <div>
             {comments?.map(comment => {
                 return (
-                    <div key={comment.comment_id}>
-                        <h5>{comment.author}</h5>
-                        <p>{comment.body}</p>
-                        <time>{comment.created_at}</time>
-                        <h6>Votes: {comment.votes}</h6> 
-                    </div>
-                );
-            })}
+                    <Card style={{ width: '25rem' }} className="comments" key={comment.comment_id}>
+                        <Card.Header as="h5">{comment.author}</Card.Header>
+                        <Card.Body>
+                            <Card.Text as="p">{comment.body}</Card.Text>
+                            <Card.Title className="text-muted">Votes: {comment.votes}</Card.Title>
+                        </Card.Body>
+                        <footer><time>{comment.created_at}</time></footer>
+                    </Card>
+                    )}
+                )};
         </div>
     );
 };

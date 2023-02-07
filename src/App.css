@@ -93,17 +93,10 @@
 .comments p {
   color: #333333;
   text-align: left;
-  padding-left: 2rem;
-  text-align: left;
 }
 
 .comments time {
   color: #808080;
-  padding: 2rem;
-  text-align: left;
-}
-
-.commments h6 {
   padding: 2rem;
   text-align: left;
 }

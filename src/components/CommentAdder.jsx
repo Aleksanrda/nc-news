@@ -4,7 +4,7 @@ import { postComment } from "../utils/api";
 import { useContext } from 'react';
 import { UserContext } from "../contexts/UserContext";
 
-const AddComment = ({ article_id, setComments, setIsLoading }) => {
+const CommentAdder = ({ article_id, setComments, setIsLoading }) => {
     const userValue = useContext(UserContext);
     const { loggedInUser } = userValue;
     const [newComment, setNewComment] = useState("");
@@ -42,4 +42,4 @@ const AddComment = ({ article_id, setComments, setIsLoading }) => {
     );
 };
 
-export default AddComment;
+export default CommentAdder;

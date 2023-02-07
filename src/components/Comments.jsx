@@ -1,6 +1,15 @@
 import { Card } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 
-const Comments = ({ comments }) => {
+const Comments = ({ comments, isLoading }) => {
+    if (isLoading) {
+        return (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          );
+    }
+
     return (
         <div>
             {comments?.map((comment, index) => {

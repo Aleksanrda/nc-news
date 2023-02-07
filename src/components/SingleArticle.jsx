@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 import { getArticle } from '../utils/api';
 import Comments from './Comments';
 import { getCommentsByArticleId } from '../utils/api';
-import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { patchVotes } from '../utils/api';
-import AddComment from './AddComment';
+import CommentAdder from './CommentAdder';
 
 
 const SingleArticle = () => {
@@ -21,6 +20,7 @@ const SingleArticle = () => {
             .then((articleFromApi) => {
                 setSingleArticle(articleFromApi);
                 setVotes(articleFromApi.votes);
+            })
             .catch((err) => {
                 console.log(err);
             })
@@ -36,14 +36,6 @@ const SingleArticle = () => {
                 console.log(err);
             })
     }, [article_id, comments, isLoading]);
-
-    if (isLoading) {
-        return (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          );
-    }
     
     const updateVotes = (vote) => {
         setVotes(currentVotes => currentVotes + vote);
@@ -55,14 +47,6 @@ const SingleArticle = () => {
                 console.log(err);
             });
     };
-
-    if (isLoading) {
-        return (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          );
-    }
 
     return (
         <div>
@@ -82,8 +66,8 @@ const SingleArticle = () => {
                     <Button variant="secondary" onClick={() => updateVotes(1)} className="like">Like</Button>
                 </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
             </article>
-            <AddComment article_id={singleArticle?.article_id} setComments={setComments} setIsLoading={setIsLoading}/>
-            <Comments comments={comments} />
+            <CommentAdder article_id={singleArticle?.article_id} setComments={setComments} setIsLoading={setIsLoading}/>
+            <Comments comments={comments} isLoading={isLoading}/>
         </div>
     );
 };

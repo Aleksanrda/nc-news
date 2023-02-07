@@ -20,10 +20,12 @@ const SingleArticle = () => {
     }, [article_id]);
 
     const updateVotes = (vote) => {
+        setVotes(currentVotes => currentVotes + vote);
+
         patchVotes(article_id, {inc_votes: vote})
             .then((article) => {
-                setVotes(currentVotes => currentVotes + vote);
             }).catch((err) => {
+                setVotes(currentVotes => currentVotes - vote);
                 console.log(err);
             });
     };

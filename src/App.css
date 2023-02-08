@@ -68,6 +68,8 @@
 .navigation-link {
   color: #FFFFF0;
   text-decoration: none;
+  padding-right: 1rem;
+  padding-left: 2rem;
 }
 
 .navigation-link:hover {

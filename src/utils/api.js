@@ -40,6 +40,11 @@ export const postComment = (articleId, comment) => {
     return newsAPI
         .post(`/articles/${articleId}/comments`, comment)
         .then(({ data }) => {
+            console.log("post comment success")
             return data.comment;
+        })
+        .catch((err) => {
+            alert(`Error happened. ${err.response.data.msg}`);
+            return err;
         });
 }

@@ -36,9 +36,6 @@ const SingleArticle = () => {
                 setIsLoading(false);
                 setIsReadOnly(false);
             })
-            .catch((err) => {
-                console.log(err);
-            })
     }, [article_id, comments, isLoading]);
     
     const updateVotes = (vote) => {
@@ -48,7 +45,6 @@ const SingleArticle = () => {
             .then((article) => {
             }).catch((err) => {
                 setVotes(currentVotes => currentVotes - vote);
-                console.log(err);
             });
     };
 

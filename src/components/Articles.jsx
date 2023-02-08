@@ -10,33 +10,50 @@ const Articles = () => {
     const [sortBy, setSortBy] = useState("article_id");
     const options = [
         "votes",
-        "created_at",
+        "date",
         "title",
         "author",    
     ];
+    const [orderBy, setOrderBy] = useState("asc");
+    const orderByOptions = ["asc", "desc"];
 
     useEffect(() => {
-        getArticles(topic, sortBy)
+        getArticles(topic, sortBy, orderBy)
             .then((articles) => {
                 setArticles(articles);
             })
             .catch((err) => {
                 console.log(err);
             })
-    }, [topic, sortBy]);
+    }, [topic, sortBy, orderBy]);
 
     const handleSortBy = (option) => {
-        setSortBy(option);
+        setSortBy(option === "date" ? "created_at" : option);
+    }
+    const handleOrderBy = (option) => {
+        setOrderBy(option);
     }
 
     return (
         <div>
             <Dropdown onSelect={handleSortBy} className="sort-by">
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle variant="info" id="dropdown-basic">
                     Sort By
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {options.map((option => {
+                        return (
+                            <Dropdown.Item eventKey={option} key={option}>{option}</Dropdown.Item>
+                        );
+                    }))}
+                </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown onSelect={handleOrderBy} className="order-by">
+                <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                    Order By
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                    {orderByOptions.map((option => {
                         return (
                             <Dropdown.Item eventKey={option} key={option}>{option}</Dropdown.Item>
                         );
@@ -50,7 +67,7 @@ const Articles = () => {
                     );
                 })}
             </Container>
-        </div>
+            </div>
     )
 };
 

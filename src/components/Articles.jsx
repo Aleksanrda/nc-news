@@ -31,7 +31,7 @@ const Articles = () => {
 
     return (
         <div>
-            <Dropdown onSelect={handleSortBy} className="sort-item">
+            <Dropdown onSelect={handleSortBy} className="sort-by">
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Sort By
                 </Dropdown.Toggle>

@@ -3,37 +3,40 @@ import { useEffect, useState } from 'react';
 import { getArticle } from '../utils/api';
 import Comments from './Comments';
 import { getCommentsByArticleId } from '../utils/api';
-import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { patchVotes } from '../utils/api';
+import CommentAdder from './CommentAdder';
+import { Spinner } from 'react-bootstrap';
 
 const SingleArticle = () => {
     const { article_id } = useParams();
     const [singleArticle, setSingleArticle] = useState({});
     const [comments, setComments] = useState([]);
+    const [isArticleLoading, setIsArticleLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const [votes, setVotes] = useState(0);
-    
+    const [isReadOnly, setIsReadOnly] = useState(false);
+
     useEffect(() => {
-        Promise.all([getArticle(article_id), getCommentsByArticleId(article_id)])
-            .then(([articleFromApi, commentsFromApi]) => {
+        getArticle(article_id)
+            .then((articleFromApi) => {
                 setSingleArticle(articleFromApi);
-                setComments(commentsFromApi);
                 setVotes(articleFromApi.votes);
-                setIsLoading(false);
+                setIsArticleLoading(false);
             })
             .catch((err) => {
                 console.log(err);
             })
     }, [article_id]);
 
-    if (isLoading) {
-        return (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          );
-    }
+    useEffect(() => {
+        getCommentsByArticleId(article_id)
+            .then((commentsFromApi) => {
+                setComments(commentsFromApi);
+                setIsLoading(false);
+                setIsReadOnly(false);
+            })
+    }, [article_id, comments, isLoading]);
     
     const updateVotes = (vote) => {
         setVotes(currentVotes => currentVotes + vote);
@@ -42,9 +45,16 @@ const SingleArticle = () => {
             .then((article) => {
             }).catch((err) => {
                 setVotes(currentVotes => currentVotes - vote);
-                console.log(err);
             });
     };
+
+    if (isArticleLoading) {
+        return (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          );
+    }
 
     return (
         <div>
@@ -64,7 +74,8 @@ const SingleArticle = () => {
                     <Button variant="secondary" onClick={() => updateVotes(1)} className="like">Like</Button>
                 </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
             </article>
-            <Comments comments={comments} />
+            <CommentAdder article_id={singleArticle?.article_id} setComments={setComments} setIsLoading={setIsLoading} isReadOnly={isReadOnly} setIsReadOnly={setIsReadOnly}/>
+            <Comments comments={comments} isLoading={isLoading}/>
         </div>
     );
 };

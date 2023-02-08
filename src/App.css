@@ -109,3 +109,11 @@
   padding: 2rem;
   text-align: left;
 }
+
+.form-control {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  width: 30% !important;
+}

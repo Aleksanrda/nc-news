@@ -4,10 +4,11 @@ import { postComment } from "../utils/api";
 import { useContext } from 'react';
 import { UserContext } from "../contexts/UserContext";
 
-const CommentAdder = ({ article_id, setComments, setIsLoading }) => {
+const CommentAdder = ({ article_id, setComments, setIsLoading, isReadOnly, setIsReadOnly }) => {
     const userValue = useContext(UserContext);
     const { loggedInUser } = userValue;
     const [newComment, setNewComment] = useState("");
+
 
     const postNewComment = () => {
         const userComment = {
@@ -16,6 +17,7 @@ const CommentAdder = ({ article_id, setComments, setIsLoading }) => {
 
         };
 
+        setIsReadOnly(true);
         setIsLoading(false);
         setNewComment("");
 
@@ -34,10 +36,12 @@ const CommentAdder = ({ article_id, setComments, setIsLoading }) => {
 
     return (  
         <Form>
+            <fieldset disabled={isReadOnly}>
             <Form.Group>
-                <Form.Control as="textarea" rows={4} placeholder="Enter a new comment" value={newComment} onChange={handleChange}/>
+                <Form.Control as="textarea" rows={4} placeholder="Add a new comment" value={newComment} onChange={handleChange}/>
             </Form.Group>
-            <Button variant="warning" onClick={() => postNewComment()}>Add Comment</Button>
+            <Button variant="warning" onClick={() => postNewComment()}>Submit</Button>
+            </fieldset>
         </Form>
     );
 };

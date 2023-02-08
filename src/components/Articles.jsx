@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
 import { Container, Dropdown } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
+    const { topic } = useParams();
     const [sortBy, setSortBy] = useState("article_id");
     const options = [
         "votes",
@@ -14,19 +16,18 @@ const Articles = () => {
     ];
 
     useEffect(() => {
-        getArticles(sortBy)
+        getArticles(topic, sortBy)
             .then((articles) => {
                 setArticles(articles);
             })
             .catch((err) => {
                 console.log(err);
             })
-    }, [sortBy]);
+    }, [topic, sortBy]);
 
     const handleSortBy = (option) => {
-        console.log(option);
         setSortBy(option);
-      }
+    }
 
     return (
         <div>

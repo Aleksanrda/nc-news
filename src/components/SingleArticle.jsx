@@ -31,8 +31,9 @@ const SingleArticle = () => {
 
     useEffect(() => {
         getCommentsByArticleId(article_id)
-            .then((commentsFromApi) => {
+            .then((commentsFromApi) => {                
                 setComments(commentsFromApi);
+                console.log(comments);
                 setIsLoading(false);
                 setIsReadOnly(false);
             })

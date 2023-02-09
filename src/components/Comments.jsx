@@ -1,7 +1,12 @@
-import { Card } from 'react-bootstrap';
-import { Spinner } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
+import CommentRemover from './CommentRemover';
+import { useContext } from 'react';
+import { UserContext } from "../contexts/UserContext";
 
 const Comments = ({ comments, isLoading }) => {
+    const user = useContext(UserContext);
+    const { loggedInUser } = user;
+
     if (isLoading) {
         return (
             <Spinner animation="border" role="status">
@@ -21,6 +26,8 @@ const Comments = ({ comments, isLoading }) => {
                             <Card.Title className="text-muted">Votes: {comment.votes}</Card.Title>
                         </Card.Body>
                         <footer><time>{comment.created_at}</time></footer>
+                        
+                        { loggedInUser.username ===  comment.author ? <CommentRemover commentId={comment.comment_id}/> : null }
                     </Card>
                     )}
                 )}

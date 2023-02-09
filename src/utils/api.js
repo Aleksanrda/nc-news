@@ -56,3 +56,8 @@ export const getTopics = () => {
             return data.topics;
         })
 }
+
+export const deleteComment = (commentId) => {
+    return newsAPI
+        .delete(`/comments/${commentId}`);
+};

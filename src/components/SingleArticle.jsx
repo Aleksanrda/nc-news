@@ -1,21 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getArticle } from '../utils/api';
-import Comments from './Comments';
-import { getCommentsByArticleId } from '../utils/api';
 import { Button } from 'react-bootstrap';
 import { patchVotes } from '../utils/api';
-import CommentAdder from './CommentAdder';
 import { Spinner } from 'react-bootstrap';
+import CommentCard  from './CommentCard';
 
 const SingleArticle = () => {
     const { article_id } = useParams();
     const [singleArticle, setSingleArticle] = useState({});
-    const [comments, setComments] = useState([]);
     const [isArticleLoading, setIsArticleLoading] = useState(true);
-    const [isLoading, setIsLoading] = useState(true);
     const [votes, setVotes] = useState(0);
-    const [isReadOnly, setIsReadOnly] = useState(false);
+
 
     useEffect(() => {
         getArticle(article_id)
@@ -28,16 +24,6 @@ const SingleArticle = () => {
                 console.log(err);
             })
     }, [article_id]);
-
-    useEffect(() => {
-        getCommentsByArticleId(article_id)
-            .then((commentsFromApi) => {                
-                setComments(commentsFromApi);
-                console.log(comments);
-                setIsLoading(false);
-                setIsReadOnly(false);
-            })
-    }, [article_id, comments, isLoading]);
     
     const updateVotes = (vote) => {
         setVotes(currentVotes => currentVotes + vote);
@@ -75,8 +61,7 @@ const SingleArticle = () => {
                     <Button variant="secondary" onClick={() => updateVotes(1)} className="like">Like</Button>
                 </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
             </article>
-            <CommentAdder article_id={singleArticle?.article_id} setComments={setComments} setIsLoading={setIsLoading} isReadOnly={isReadOnly} setIsReadOnly={setIsReadOnly}/>
-            <Comments comments={comments} isLoading={isLoading}/>
+            <CommentCard articleId={singleArticle?.article_id}/>
         </div>
     );
 };

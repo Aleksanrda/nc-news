@@ -3,7 +3,7 @@ import CommentRemover from './CommentRemover';
 import { useContext } from 'react';
 import { UserContext } from "../contexts/UserContext";
 
-const Comments = ({ comments, isLoading }) => {
+const Comments = ({ comments, setComments, isLoading }) => {
     const user = useContext(UserContext);
     const { loggedInUser } = user;
 
@@ -27,7 +27,8 @@ const Comments = ({ comments, isLoading }) => {
                         </Card.Body>
                         <footer><time>{comment.created_at}</time></footer>
                         
-                        { loggedInUser.username ===  comment.author ? <CommentRemover commentId={comment.comment_id}/> : null }
+                        { loggedInUser.username ===  comment.author 
+                        ? <CommentRemover comment={comment} setComments={setComments}/> : null }
                     </Card>
                     )}
                 )}

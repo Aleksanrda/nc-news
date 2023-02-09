@@ -2,14 +2,16 @@ import { useState } from 'react';
 import { deleteComment } from '../utils/api';
 import { Button } from 'react-bootstrap';
 
-const CommentRemover = ({ commentId }) => {
+const CommentRemover = ({ comment, setComments }) => {
     const [isRemoving, setIsRemoving] = useState(false);
 
     const deleteCurrentComment = (commentId) => {
         setIsRemoving(true);
+
         deleteComment(commentId)
             .then(() => {
-                setIsRemoving(false);
+                setComments(currentComments => currentComments.filter(comment => comment.comment_id !== commentId));
+                setIsRemoving(false);;
             })
             .catch((err) => {
                 console.log(err);
@@ -17,7 +19,7 @@ const CommentRemover = ({ commentId }) => {
     };
 
     return (
-        <Button variant="danger" disabled={isRemoving} onClick={() => deleteCurrentComment(commentId)}>Delete comment</Button>
+        <Button variant="danger" disabled={isRemoving} onClick={() => deleteCurrentComment(comment.comment_id)}>Delete comment</Button>
     );
 };
 

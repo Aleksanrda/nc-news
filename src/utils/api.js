@@ -42,10 +42,6 @@ export const postComment = (articleId, comment) => {
         .then(({ data }) => {
             console.log("post comment success")
             return data.comment;
-        })
-        .catch((err) => {
-            alert(`Error happened. ${err.response.data.msg}`);
-            return err;
         });
 }
 
@@ -56,3 +52,8 @@ export const getTopics = () => {
             return data.topics;
         })
 }
+
+export const deleteComment = (commentId) => {
+    return newsAPI
+        .delete(`/comments/${commentId}`);
+};

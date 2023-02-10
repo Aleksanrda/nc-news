@@ -3,6 +3,7 @@ import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
 import { Container, Dropdown } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import NotFound from "./NotFound";
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
@@ -16,6 +17,7 @@ const Articles = () => {
     ];
     const [orderBy, setOrderBy] = useState("asc");
     const orderByOptions = ["asc", "desc"];
+    const [err, setErr] = useState(null);
 
     useEffect(() => {
         getArticles(topic, sortBy, orderBy)
@@ -24,6 +26,7 @@ const Articles = () => {
             })
             .catch((err) => {
                 console.log(err);
+                setErr(err);
             })
     }, [topic, sortBy, orderBy]);
 
@@ -32,6 +35,12 @@ const Articles = () => {
     }
     const handleOrderBy = (option) => {
         setOrderBy(option);
+    }
+
+    if (err?.response?.status === 404 || err?.response?.status === 400) {
+        return (
+            <NotFound message={err.response.data.msg}/>
+        );
     }
 
     return (

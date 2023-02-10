@@ -36,4 +36,5 @@ const Comments = ({ comments, setComments, isLoading }) => {
     );
 };
 
+
 export default Comments;

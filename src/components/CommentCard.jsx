@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { getCommentsByArticleId } from '../utils/api';
 import Comments from './Comments';
 import CommentAdder from './CommentAdder';
+import NotFound from './NotFound';
 
 const CommentCard = ({ articleId }) => {
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [err, setError] = useState(null);
 
     useEffect(() => {
         getCommentsByArticleId(articleId)
@@ -13,9 +15,17 @@ const CommentCard = ({ articleId }) => {
                 setComments(commentsFromApi);
                 setIsLoading(false);
             })
+            .catch((err) => {
+                console.log(err);
+                setError(err);
+            })
     }, [articleId]);
 
-    console.log(comments);
+    if (err?.response?.status === 404 || err?.response?.status === 400) {
+        return (
+            <NotFound message={err.response.data.msg}/>
+        );
+    }
 
     return (
         <div>

@@ -5,7 +5,7 @@
 }
 
 .Header h1 {
-  color: black;
+  color: #333333;
   font-weight: 900;
 }
 
@@ -119,3 +119,40 @@
   margin-bottom: 1rem;
   width: 30% !important;
 }
+
+.path-to-articles {
+  color: #FFFFF0;
+  text-decoration: none;
+}
+.path-to-articles:hover {
+  color: #FFFFF0;
+  text-decoration: none;
+}
+
+.non-existent-path h1 {
+  color: #4d4d4d;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-family:  Monospace;
+}
+
+.non-existent-path h4 {
+  color: #666666;
+}
+
+.button-path-to-articles {
+  margin-top: 2rem;
+}
+
+.non-existent-path {
+  padding-top: 8rem;
+  background-color: #BC8F8F;
+}
+
+.float-child {
+  width: 50%;
+  height: 44rem;
+  float: left;
+  padding: 2rem;
+  background-color: #FFFFF0;
+} 

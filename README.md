@@ -21,13 +21,13 @@ Node.js v19.1.0
 - clone project in the current folder and open it => cd nc-news
 - in your terminal run npm install
 - check that the following dependencies exist in cloned project:
-    1) "axios": "^1.3.2",
-    2) "bootstrap": "^5.2.3",
-    3) "mdb-react-ui-kit": "^5.1.0",
-    4) "react": "^18.2.0",
-    5) "react-bootstrap": "^2.7.0",
-    6) "react-dom": "^18.2.0",
-    7) "react-router-dom": "^6.8.0"
+    1) axios
+2) bootstrap
+3) mdb-react-ui-kit
+4) react
+5) react-bootstrap
+6) react-dom
+7) react-router-dom
     
 - run npm start
 - website should be opened via localhost in the browser

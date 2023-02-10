@@ -6,6 +6,7 @@ import { patchVotes } from '../utils/api';
 import { Spinner } from 'react-bootstrap';
 import CommentCard  from './CommentCard';
 import NotFound from './NotFound';
+import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 const SingleArticle = () => {
     const { article_id } = useParams();
@@ -52,25 +53,27 @@ const SingleArticle = () => {
     }
 
     return (
-        <div>
-            <article key={singleArticle?.article_id} className="single-article">
-                <div className="article-body">
-                    <h2>{singleArticle?.title}</h2>
-                    <img src={singleArticle?.article_img_url} alt=""></img>
-                    <h5>written by {singleArticle?.author} | {singleArticle?.topic}</h5>
-                    <p>{singleArticle?.body}</p>
-                    <time>{singleArticle?.created_at}</time>
-                </div>
-                <div className='vote-buttons'>
-                    <Button variant="secondary" onClick={() => updateVotes(-1)} className="dislike">Dislike</Button>
-                        <span className="votes">
-                        Votes: {votes}
-                        </span>
-                    <Button variant="secondary" onClick={() => updateVotes(1)} className="like">Like</Button>
-                </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-            </article>
+        <MDBContainer>
+            <MDBRow className='mb-1'>
+                    <article key={singleArticle?.article_id} className="single-article">
+                        <div className="article-body">
+                            <h2>{singleArticle?.title}</h2>
+                            <img src={singleArticle?.article_img_url} alt=""></img>
+                            <h5>written by {singleArticle?.author} | {singleArticle?.topic}</h5>
+                            <p>{singleArticle?.body}</p>
+                            <time>{singleArticle?.created_at}</time>
+                        </div>
+                        <div className='vote-buttons'>
+                            <Button variant="secondary" onClick={() => updateVotes(-1)} className="dislike">Dislike</Button>
+                                <span className="votes">
+                                Votes: {votes}
+                                </span>
+                            <Button variant="secondary" onClick={() => updateVotes(1)} className="like">Like</Button>
+                        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                    </article>
+            </MDBRow>
             <CommentCard articleId={singleArticle?.article_id}/>
-        </div>
+        </MDBContainer>
     );
 };
 

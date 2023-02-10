@@ -1,6 +1,6 @@
 const Header = () => {
     return (
-        <h1>NEWS</h1>
+        <h1>Enjoy reading articles!</h1>
     );
 };
 

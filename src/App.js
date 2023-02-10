@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Articles from './components/Articles';
-import Header from './components/Header';
 import NavigationBar from './components/NavigationBar'
 import SingleArticle from './components/SingleArticle';
 import ErrorPage from './components/ErrorPage';
@@ -10,7 +9,6 @@ import ErrorPage from './components/ErrorPage';
 function App() {
   return (
     <div className="App">
-      <Header />
       <NavigationBar />
       <Routes>
       <Route path="/" element={<Articles />}></Route>

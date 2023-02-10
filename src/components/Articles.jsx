@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
-import { Container, Dropdown } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import NotFound from "./NotFound";
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
@@ -45,37 +46,41 @@ const Articles = () => {
 
     return (
         <div>
-            <Dropdown onSelect={handleSortBy} className="sort-by">
-                <Dropdown.Toggle variant="info" id="dropdown-basic">
-                    Sort By
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    {options.map((option => {
-                        return (
-                            <Dropdown.Item eventKey={option} key={option}>{option}</Dropdown.Item>
-                        );
-                    }))}
-                </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown onSelect={handleOrderBy} className="order-by">
-                <Dropdown.Toggle variant="danger" id="dropdown-basic">
-                    Order By
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    {orderByOptions.map((option => {
-                        return (
-                            <Dropdown.Item eventKey={option} key={option}>{option}</Dropdown.Item>
-                        );
-                    }))}
-                </Dropdown.Menu>
-            </Dropdown>
-            <Container className="grid-container">
+            <div className="order-selection">
+                <Dropdown onSelect={handleSortBy} className="sort-by">
+                    <Dropdown.Toggle variant="info" id="dropdown-basic">
+                        Sort By
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        {options.map((option => {
+                            return (
+                                <Dropdown.Item eventKey={option} key={option}>{option}</Dropdown.Item>
+                            );
+                        }))}
+                    </Dropdown.Menu>
+                </Dropdown>
+                <Dropdown onSelect={handleOrderBy} className="order-by">
+                    <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                        Order By
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        {orderByOptions.map((option => {
+                            return (
+                                <Dropdown.Item eventKey={option} key={option}>{option}</Dropdown.Item>
+                            );
+                        }))}
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
+            <MDBRow className="grid-container">
                 {articles.map(article => {
                     return (
-                        <ArticleCard article={article} key={article.article_id}/>
+                        <MDBCol md='4'>
+                            <ArticleCard article={article} key={article.article_id}/>
+                        </MDBCol>
                     );
                 })}
-            </Container>
+            </MDBRow>
             </div>
     )
 };

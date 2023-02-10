@@ -1,3 +1,6 @@
+
+NC-NEWS
+
 1) A link to the deployed app:
 
 https://sesame-nc-news.netlify.app/
@@ -21,7 +24,7 @@ Node.js v19.1.0
 - clone project in the current folder and open it => cd nc-news
 - in your terminal run npm install
 - check that the following dependencies exist in cloned project:
-    1) axios
+1) axios
 2) bootstrap
 3) mdb-react-ui-kit
 4) react
@@ -34,6 +37,7 @@ Node.js v19.1.0
 
 6) The current's project diagram
 
-![image](https://user-images.githubusercontent.com/33073090/216986342-5158e5d7-1c78-46d9-acb9-24e33a600a42.png)
+![image](https://user-images.githubusercontent.com/33073090/218179378-39e5ed9a-5a50-4eda-acc0-7ae0a031c1c4.png)
 
-![image](https://user-images.githubusercontent.com/33073090/216986502-fdfabc94-6716-4610-aba3-a312026b3f7f.png)
+![image](https://user-images.githubusercontent.com/33073090/218179493-83f1cbf8-a9f6-4c3f-95a3-65052fce4599.png)
+

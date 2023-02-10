@@ -171,3 +171,19 @@
 .not-found img {
   margin: 6.5rem;
 }
+
+.delete-comment {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 7rem;
+  margin-right: 7rem;
+}
+
+.link-to-article {
+  text-decoration: none;
+  color: #800080;
+}
+
+.link-to-article:hover {
+  color: #DB7093;
+}

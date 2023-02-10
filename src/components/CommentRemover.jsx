@@ -28,7 +28,7 @@ const CommentRemover = ({ comment, setComments }) => {
     }
 
     return (
-        <Button variant="danger" disabled={isRemoving} onClick={() => deleteCurrentComment(comment.comment_id)}>Delete comment</Button>
+        <Button variant="danger" disabled={isRemoving} onClick={() => deleteCurrentComment(comment.comment_id)} className="delete-comment">Delete comment</Button>
     );
 };
 

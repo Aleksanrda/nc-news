@@ -187,3 +187,7 @@
 .link-to-article:hover {
   color: #DB7093;
 }
+
+.sort-by {
+  margin: 1rem;
+}

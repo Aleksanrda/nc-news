@@ -5,6 +5,7 @@ import Articles from './components/Articles';
 import Header from './components/Header';
 import NavigationBar from './components/NavigationBar'
 import SingleArticle from './components/SingleArticle';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<Articles />}></Route>
       <Route path="/topics/:topic" element={<Articles />}></Route>
       <Route path="/articles/:article_id" element={<SingleArticle />} />
+      <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

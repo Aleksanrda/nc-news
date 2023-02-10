@@ -3,10 +3,12 @@ import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import NotFound from "./NotFound";
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
     const { topic } = useParams();
+    const [err, setErr] = useState(null);
 
     useEffect(() => {
         getArticles(topic)
@@ -15,8 +17,15 @@ const Articles = () => {
             })
             .catch((err) => {
                 console.log(err);
+                setErr(err);
             })
     }, [topic]);
+
+    if (err?.response?.status === 404 || err?.response?.status === 400) {
+        return (
+            <NotFound message={err.response.data.msg}/>
+        );
+    }
 
     return (
         <Container className="grid-container">

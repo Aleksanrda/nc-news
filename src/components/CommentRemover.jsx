@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { deleteComment } from '../utils/api';
 import { Button } from 'react-bootstrap';
+import NotFound from './NotFound';
 
 const CommentRemover = ({ comment, setComments }) => {
     const [isRemoving, setIsRemoving] = useState(false);
+    const [err, setError] = useState(null);
 
     const deleteCurrentComment = (commentId) => {
         setIsRemoving(true);
@@ -15,8 +17,15 @@ const CommentRemover = ({ comment, setComments }) => {
             })
             .catch((err) => {
                 console.log(err);
+                setError(err);
             })
     };
+
+    if (err?.response?.status === 404 || err?.response?.status === 400) {
+        return (
+            <NotFound message={err.response.data.msg}/>
+        );
+    }
 
     return (
         <Button variant="danger" disabled={isRemoving} onClick={() => deleteCurrentComment(comment.comment_id)}>Delete comment</Button>

@@ -5,13 +5,14 @@ import { Button } from 'react-bootstrap';
 import { patchVotes } from '../utils/api';
 import { Spinner } from 'react-bootstrap';
 import CommentCard  from './CommentCard';
+import NotFound from './NotFound';
 
 const SingleArticle = () => {
     const { article_id } = useParams();
     const [singleArticle, setSingleArticle] = useState({});
     const [isArticleLoading, setIsArticleLoading] = useState(true);
     const [votes, setVotes] = useState(0);
-
+    const [err, setError] = useState(null);
 
     useEffect(() => {
         getArticle(article_id)
@@ -22,6 +23,7 @@ const SingleArticle = () => {
             })
             .catch((err) => {
                 console.log(err);
+                setError(err);
             })
     }, [article_id]);
     
@@ -34,6 +36,12 @@ const SingleArticle = () => {
                 setVotes(currentVotes => currentVotes - vote);
             });
     };
+
+    if (err?.response?.status === 404 || err?.response?.status === 400) {
+        return (
+            <NotFound message={err.response.data.msg} />
+        );
+    }
 
     if (isArticleLoading) {
         return (

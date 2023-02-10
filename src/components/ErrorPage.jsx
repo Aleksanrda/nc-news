@@ -13,7 +13,6 @@ const ErrorPage = () => {
             <div className="float-child">
                 <img src={donut} alt=""></img>
             </div>
-            
         </div>
     );
 };

@@ -156,3 +156,18 @@
   padding: 2rem;
   background-color: #FFFFF0;
 } 
+
+.not-found-message {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #BC8F8F;
+  color: #FFFFF0;
+}
+
+.not-found {
+  background-color: #FFFFF0;
+}
+
+.not-found img {
+  margin: 6.5rem;
+}
